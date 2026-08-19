@@ -1,278 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Quote Website</title>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <style>
-#love-quote {
-   
-    text-align: justify;
-    
-}
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background-color: #f8f9fa;
-            transition: background 0.3s, color 0.3s;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#160b2f" />
+  <title>Happy Birthday Sulochan</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700;800&display=swap');
 
-        .dark {
-            background-color: #222;
-            color: #fff;
-        }
+    :root {
+      --night: #100820;
+      --plum: #2a1048;
+      --pink: #ff6b9f;
+      --gold: #ffd98a;
+      --cream: #fff9ef;
+      --muted: rgba(255, 249, 239, 0.72);
+    }
 
-        header {
-            background: #343a40;
-            color: white;
-            padding: 30px;
-        }
+    * { box-sizing: border-box; }
 
-        nav {
-            margin: 15px;
-        }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      overflow: hidden;
+    }
 
-        nav a {
-            text-decoration: none;
-            padding: 10px 15px;
-            color: #007bff;
-            cursor: pointer;
-            display: inline-block;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
+    body {
+      color: var(--cream);
+      background: var(--night);
+      font-family: 'DM Sans', sans-serif;
+    }
 
-        nav a:hover {
-            color: #0056b3;
-        }
+    .scene {
+      isolation: isolate;
+      position: relative;
+      display: grid;
+      min-height: 100vh;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255, 123, 167, 0.18), transparent 28rem),
+        radial-gradient(circle at 11% 15%, rgba(153, 110, 255, 0.3), transparent 25rem),
+        radial-gradient(circle at 91% 90%, rgba(255, 190, 88, 0.15), transparent 24rem),
+        linear-gradient(135deg, #120820 0%, #2b104d 46%, #180a34 100%);
+    }
 
-        section {
-            display: none;
-            padding: 20px;
-            flex: 1;
-        }
+    .scene::before {
+      content: '';
+      position: absolute;
+      inset: -40%;
+      z-index: -2;
+      background: conic-gradient(from 130deg, transparent, rgba(255, 122, 176, 0.13), transparent 24%, rgba(100, 72, 231, 0.18), transparent 58%);
+      animation: aura 16s linear infinite;
+    }
 
-        .active {
-            display: block;
-        }
+    .grain {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
 
-        blockquote {
-            font-size: 20px;
-            margin: 20px auto;
-            padding: 15px;
-            max-width: 600px;
-            background: #ffffff;
-            border-left: 5px solid #007bff;
-            font-style: italic;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-        }
+    .orb {
+      position: absolute;
+      width: 32rem;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      filter: blur(4px);
+      opacity: 0.32;
+      pointer-events: none;
+    }
+    .orb.one { top: -18rem; right: -7rem; background: #ff5795; animation: drift 11s ease-in-out infinite alternate; }
+    .orb.two { bottom: -21rem; left: -10rem; background: #6f5cff; animation: drift 13s 1s ease-in-out infinite alternate-reverse; }
 
-        .dark blockquote {
-            background: #333;
-            color: white;
-            border-left-color: #007bff;
-        }
+    .content {
+      position: relative;
+      z-index: 5;
+      width: min(92vw, 900px);
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+      animation: reveal 1.2s cubic-bezier(.2,.8,.2,1) both;
+    }
 
-        form {
-            margin: 20px auto;
-            max-width: 500px;
-        }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      margin: 0 0 1.1rem;
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before, .eyebrow::after { content: '✦'; font-size: .8rem; opacity: .8; }
 
-        textarea, input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+    h1, h2 {
+      margin: 0;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 800;
+      line-height: .95;
+    }
 
-        button {
-            padding: 10px 20px;
-            background: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
+    h1 {
+      color: var(--cream);
+      font-size: clamp(3rem, 9vw, 7.6rem);
+      letter-spacing: -.065em;
+      text-shadow: 0 0 28px rgba(255, 145, 190, .22);
+    }
 
-        button:hover {
-            background: #0056b3;
-        }
+    h1 span {
+      display: inline-block;
+      background: linear-gradient(105deg, #fff8df 12%, #ffd47e 45%, #ff8db7 86%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shimmer 5s ease-in-out infinite;
+      background-size: 180% auto;
+    }
 
-        footer {
-            margin-top: auto;
-            padding: 10px;
-            background: #343a40;
-            color: white;
-            text-align: center;
-        }
+    h2 {
+      margin-top: 1.05rem;
+      color: #fff;
+      font-size: clamp(2rem, 5.8vw, 4.6rem);
+      letter-spacing: .015em;
+    }
 
-        #theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #007bff;
-            color: white;
-            border: 2px solid #007bff;
-            border-radius: 30px;
-            padding: 5px 10px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 12px;
-            transition: background 0.3s, transform 0.3s ease-in-out;
-        }
+    .wish {
+      margin: 1.25rem 0 2rem;
+      color: var(--muted);
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      letter-spacing: .035em;
+    }
 
-        #theme-toggle:hover {
-            background: #0056b3;
-            transform: scale(1.1);
-        }
+    .side-note {
+      margin: -1.15rem 0 1.25rem;
+      color: rgba(255, 217, 138, .82);
+      font-size: .78rem;
+      letter-spacing: .02em;
+    }
 
-    </style>
+    .cake-wrap {
+      position: relative;
+      width: 210px;
+      height: 170px;
+      margin: 0 auto 1.35rem;
+      animation: cakeIn 1.4s .35s cubic-bezier(.2,.8,.2,1) both;
+      filter: drop-shadow(0 18px 25px rgba(0,0,0,.3));
+    }
+    .cake-wrap::after {
+      content: '';
+      position: absolute;
+      left: 16%;
+      right: 16%;
+      bottom: 4px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(255, 190, 112, .3);
+      filter: blur(12px);
+    }
+    .cake { position: absolute; left: 20px; right: 20px; bottom: 18px; height: 78px; border-radius: 12px 12px 18px 18px; background: linear-gradient(180deg, #ffabc1, #df5e8c); box-shadow: inset 0 -10px rgba(150, 34, 91, .15); }
+    .cake::before { content: ''; position: absolute; left: 0; right: 0; top: -22px; height: 42px; border-radius: 50%; background: #fff2dc; box-shadow: inset 0 -8px #ffbfd0; }
+    .cake::after { content: '•  •  •  •  •'; position: absolute; left: 14px; top: 32px; color: #ffd778; font-size: 1.2rem; letter-spacing: .05em; }
+    .plate { position: absolute; left: 7px; right: 7px; bottom: 10px; height: 18px; border-radius: 50%; background: linear-gradient(#fff5e7, #e0a5c0); }
+    .candle { position: absolute; top: 8px; left: 50%; width: 13px; height: 46px; border-radius: 4px; transform: translateX(-50%); background: repeating-linear-gradient(-45deg, #fff0a8 0 6px, #ff759f 6px 12px); }
+    .flame { position: absolute; top: -19px; left: 50%; width: 16px; height: 24px; transform: translateX(-50%); border-radius: 50% 50% 50% 0; background: #ffd76c; box-shadow: 0 0 20px 8px rgba(255, 180, 78, .55); animation: flicker .75s ease-in-out infinite alternate; }
+
+    .celebrate {
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      padding: .92rem 1.45rem;
+      color: #2b123b;
+      background: linear-gradient(110deg, #ffe6a6, #ff9fbd);
+      box-shadow: 0 10px 26px rgba(255, 121, 164, .25), inset 0 1px rgba(255,255,255,.8);
+      font: 700 .95rem 'DM Sans', sans-serif;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .celebrate:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 32px rgba(255, 121, 164, .38), inset 0 1px rgba(255,255,255,.8); }
+    .celebrate:active { transform: translateY(0) scale(.98); }
+
+    .after-message {
+      min-height: 1.4em;
+      margin: 1rem 0 0;
+      color: var(--gold);
+      font-size: .88rem;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .4s ease, transform .4s ease;
+    }
+    .after-message.show { opacity: 1; transform: translateY(0); }
+    .celebrating .cake-wrap { animation: cakeBounce .8s ease-in-out 2; }
+
+    .balloons, .confetti, .particles, .sparkles { position: absolute; inset: 0; pointer-events: none; }
+    .balloon { position: absolute; bottom: -12rem; width: var(--size); height: calc(var(--size) * 1.25); border-radius: 50% 50% 46% 46%; background: var(--color); box-shadow: inset -12px -10px 16px rgba(0,0,0,.14), inset 9px 8px 10px rgba(255,255,255,.23), 0 0 24px color-mix(in srgb, var(--color) 38%, transparent); animation: rise var(--duration) var(--delay) ease-in infinite; }
+    .balloon::before { content: ''; position: absolute; top: 13%; left: 19%; width: 20%; height: 28%; border-radius: 50%; background: rgba(255,255,255,.5); transform: rotate(35deg); }
+    .balloon::after { content: ''; position: absolute; bottom: -38px; left: 50%; width: 1px; height: 42px; background: rgba(255,255,255,.38); }
+
+    .particle { position: absolute; width: var(--s); height: var(--s); border-radius: 50%; background: #fff1b6; box-shadow: 0 0 12px 2px #ffb7cf; animation: particle var(--d) var(--delay) ease-in-out infinite alternate; }
+    .sparkle { position: absolute; color: #ffe2a2; font-size: var(--s); text-shadow: 0 0 16px #ffb8d3; animation: twinkle var(--d) var(--delay) ease-in-out infinite; }
+
+    .confetto { position: absolute; top: -20px; width: 8px; height: 14px; background: var(--c); opacity: .9; animation: fall var(--d) var(--delay) linear infinite; }
+    .confetto:nth-child(3n) { border-radius: 50%; width: 9px; height: 9px; }
+    .confetto:nth-child(4n) { transform: rotate(35deg); }
+    .burst .confetto { animation: burstFall var(--d) var(--delay) ease-out forwards; }
+
+    @keyframes aura { to { transform: rotate(360deg); } }
+    @keyframes drift { to { transform: translate(5rem, 3rem) scale(1.12); } }
+    @keyframes reveal { from { opacity: 0; transform: translateY(30px) scale(.97); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
+    @keyframes cakeIn { from { opacity: 0; transform: translateY(40px) scale(.7); } to { opacity: 1; transform: none; } }
+    @keyframes shimmer { 0%, 100% { background-position: 0% center; } 50% { background-position: 100% center; } }
+    @keyframes flicker { to { transform: translateX(-50%) rotate(5deg) scale(1.12); } }
+    @keyframes cakeBounce { 25% { transform: translateY(-14px) rotate(-3deg); } 50% { transform: translateY(0) rotate(3deg); } 75% { transform: translateY(-8px) rotate(-1deg); } }
+    @keyframes rise { 0% { transform: translateY(0) translateX(0) rotate(0); opacity: 0; } 12% { opacity: .9; } 50% { transform: translateY(-55vh) translateX(18px) rotate(7deg); } 100% { transform: translateY(-125vh) translateX(-28px) rotate(-8deg); opacity: .1; } }
+    @keyframes fall { to { transform: translateY(110vh) rotate(620deg); } }
+    @keyframes burstFall { 0% { transform: translate(0, -5vh) rotate(0) scale(1.1); opacity: 1; } 100% { transform: translate(var(--x), 105vh) rotate(800deg); opacity: 0; } }
+    @keyframes particle { to { transform: translateY(-22px) translateX(12px); opacity: .22; } }
+    @keyframes twinkle { 0%, 100% { opacity: .15; transform: scale(.6) rotate(0); } 50% { opacity: 1; transform: scale(1.2) rotate(25deg); } }
+
+    @media (max-width: 600px) {
+      .content { padding-top: 2rem; }
+      .cake-wrap { transform: scale(.88); margin-bottom: .4rem; }
+      .balloon { width: calc(var(--size) * .72); height: calc(var(--size) * .9); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+    }
+  </style>
 </head>
 <body>
+  <main class="scene" id="scene">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="grain"></div>
+    <div class="particles" id="particles"></div>
+    <div class="sparkles" id="sparkles"></div>
+    <div class="balloons" aria-hidden="true">
+      <i class="balloon" style="--size:5.2rem;--color:#ff739f;--duration:17s;--delay:-4s;left:5%;"></i>
+      <i class="balloon" style="--size:4.2rem;--color:#8075ff;--duration:20s;--delay:-12s;left:17%;"></i>
+      <i class="balloon" style="--size:6rem;--color:#ffca70;--duration:19s;--delay:-8s;right:7%;"></i>
+      <i class="balloon" style="--size:3.8rem;--color:#ef76cf;--duration:15s;--delay:-2s;right:22%;"></i>
+    </div>
+    <div class="confetti" id="confetti" aria-hidden="true"></div>
 
-    <header>
-        <h1>Welcome to Quotes and Short Poem Collection</h1>
-        <p>Hi, I'm Anup Kadel. I love collecting and sharing quotes and short poems. Explore and enjoy!</p>
-        <button id="theme-toggle">🌞</button>
-    </header>
-
-    <nav>
-        <a onclick="showSection('home')">Home</a>
-        <a onclick="showSection('quotes')">Read Quotes</a>
-        <a onclick="showSection('poems')">Poems</a>
-        <a onclick="showSection('suggest')">Submit Quote & Poem</a>
-    </nav>
-
-    <section id="home" class="active">
-        <h2>Quote of the Day</h2>
-        <blockquote id="quote-of-the-day"></blockquote>
-        <p>Click "Read Quotes" to explore more!</p>
+    <section class="content">
+      <p class="eyebrow">A little celebration for you</p>
+      <div class="cake-wrap" id="cake" aria-label="Birthday cake illustration" role="img">
+        <div class="candle"><span class="flame"></span></div>
+        <div class="cake"></div>
+        <div class="plate"></div>
+      </div>
+      <h1><span>🎉 HAPPY BIRTHDAY 🎉</span></h1>
+      <h2>SULOCHAN KHANAL</h2>
+      <p class="wish">Wishing you an amazing year ahead!</p>
+      <p class="side-note">Forget about reecha dude you quuen deserve better</p>
+      <button class="celebrate" id="celebrate" type="button">Celebrate 🎂</button>
+      <p class="after-message" id="afterMessage" role="status"></p>
     </section>
+  </main>
 
-    <section id="quotes">
-        <h2>Quotes Collection</h2>
-        <blockquote>"Always look people in the eyes, even they are blind just say I'm looking in your eyes." - Unknown</blockquote>
-<blockquote>" The most amazing thing that can happen to a human being will happen to you if you just lower your expectation." - Unknown</blockquote>
-<blockquote>" A crooked tree lives its own life, while a straight tree is turned into wood." - A Chinese bro</blockquote>
+  <script>
+    const scene = document.getElementById('scene');
+    const confetti = document.getElementById('confetti');
+    const particles = document.getElementById('particles');
+    const sparkles = document.getElementById('sparkles');
+    const afterMessage = document.getElementById('afterMessage');
+    const celebrate = document.getElementById('celebrate');
 
+    const colors = ['#ff719f', '#ffd477', '#8c7dff', '#72e0d1', '#fff0d0'];
 
-        <blockquote>"Do it today not in 2day." - Sigma Aagaman</blockquote>
-<blockquote>"Is it the journey or the destination neither its the company." - Sigma Khanal</blockquote>
+    function addBackgroundDetails() {
+      for (let i = 0; i < 34; i += 1) {
+        const dot = document.createElement('i');
+        dot.className = 'particle';
+        dot.style.left = `${Math.random() * 100}%`;
+        dot.style.top = `${Math.random() * 100}%`;
+        dot.style.setProperty('--s', `${Math.random() * 4 + 2}px`);
+        dot.style.setProperty('--d', `${Math.random() * 4 + 3}s`);
+        dot.style.setProperty('--delay', `${Math.random() * -6}s`);
+        particles.appendChild(dot);
+      }
 
-<blockquote>"Work hard, Study well and eat and sleep plenty." - Master Roshi</blockquote>
-        <blockquote>"It's not who I am underneath, but what I do that defines me." - Batman</blockquote>
-        <blockquote>"The beauty you see in other is a reflection of yours." - Unknown</blockquote>
-        <blockquote>"True beauty shines not in appearances, but in the depth of one's character." - Someone</blockquote>
-        <blockquote>"When life gives you lemonade, make lemon out of it. Life will be 'WTF!'" - Unknown</blockquote>
-        <blockquote>"Watch a sunrise at least a day." - Unknown</blockquote>
+      for (let i = 0; i < 17; i += 1) {
+        const star = document.createElement('i');
+        star.className = 'sparkle';
+        star.textContent = Math.random() > .5 ? '✦' : '·';
+        star.style.left = `${Math.random() * 96 + 2}%`;
+        star.style.top = `${Math.random() * 90 + 4}%`;
+        star.style.setProperty('--s', `${Math.random() * 1.1 + .6}rem`);
+        star.style.setProperty('--d', `${Math.random() * 3 + 2}s`);
+        star.style.setProperty('--delay', `${Math.random() * -5}s`);
+        sparkles.appendChild(star);
+      }
+    }
 
- <blockquote>"When the going gets tough, the tough get going." - Someone</blockquote>
-        <blockquote>"Sometimes you have to suffer the sins that you didn't even do." - Unknown</blockquote>
-        <blockquote>"Bravery is not having no fear, it is having fear and doing it anyway." - Unknown</blockquote>
-        <blockquote>"Dream big. Work hard. Stay humble." - Unknown</blockquote>
-        <blockquote>"The mind is everything. What you think you become." - Buddha</blockquote>
-        <blockquote>"Your only limit is your mind." - Unknown</blockquote>
-    </section>
+    function makeConfetti(count = 70, burst = false) {
+      confetti.innerHTML = '';
+      confetti.classList.toggle('burst', burst);
+      for (let i = 0; i < count; i += 1) {
+        const piece = document.createElement('i');
+        piece.className = 'confetto';
+        piece.style.left = `${Math.random() * 100}%`;
+        piece.style.setProperty('--c', colors[i % colors.length]);
+        piece.style.setProperty('--d', `${Math.random() * 3 + (burst ? 2 : 5)}s`);
+        piece.style.setProperty('--delay', `${Math.random() * (burst ? .8 : -7)}s`);
+        if (burst) piece.style.setProperty('--x', `${(Math.random() - .5) * 360}px`);
+        confetti.appendChild(piece);
+      }
+    }
 
-    <section id="poems">
-        <h2>Welcome to the Poem Collection</h2>
-        <blockquote>“She guessed my favourite colour at one try but, I never had a favourite colour until she yelled yellow.”</blockquote>
-<blockquote id="love-quote">
-    "In this world humans are known as most intelligent living beings, right? 
-    But in the name of love we all are foolish in some way.<br><br>
+    celebrate.addEventListener('click', () => {
+      scene.classList.remove('celebrating');
+      void scene.offsetWidth;
+      scene.classList.add('celebrating');
+      makeConfetti(125, true);
+      afterMessage.textContent = 'Have an absolutely amazing birthday, Sulochan! 🥳';
+      afterMessage.classList.add('show');
+      celebrate.textContent = 'More confetti ✨';
+    });
 
-    We love some people so much that we tend to think we can't live without them. 
-    We become anxious without seeing or talking to them, our desires making us 
-    believe they are like oxygen someone we seek every single second.<br><br>
-
-    This makes us possessive and obsessive. We try to control their life, 
-    wanting to keep them in our sight forever, just like the saying 
-    <em>"you're the apple of my eye."</em> Yet we never ask if that person truly 
-    wants to be the apple of our eye.<br><br>
-
-    Still, we want them. It’s like trying to hold water in our hands—forgetting 
-    that water isn’t meant to be held, but to flow, to reach its ocean. 
-    And sometimes, we must accept that we are not their ocean someone else is.<br><br>
-
-    After all, we are only human..." - Prax
-</blockquote>
-    </section>
-
-    <section id="suggest">
-        <h2>Submit Quote & Poem</h2>
-        <form id="quoteForm">
-            <label for="quote">Your Quote/Poem:</label><br>
-            <textarea id="quote" required></textarea><br>
-            <label for="author">Author:</label><br>
-            <input type="text" id="author" required><br>
-            <button type="submit">Send</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>Thanks for visiting! Keep inspiring.</p>
-    </footer>
-
-    <script>
-        document.getElementById("theme-toggle").addEventListener("click", () => {
-            document.body.classList.toggle("dark");
-            document.getElementById("theme-toggle").textContent = document.body.classList.contains("dark") ? "🌜" : "🌞";
-        });
-
-        function showSection(sectionId) {
-            document.querySelectorAll("section").forEach(section => {
-                section.classList.remove("active");
-            });
-            document.getElementById(sectionId).classList.add("active");
-        }
-
-        const dailyQuotes = [
-            { text: "The best way to predict the future is to create it.", author: "Peter Drucker" },
-            { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
-            { text: "Do what you can, with what you have, where you are.", author: "Theodore Roosevelt" }
-        ];
-
-        function displayDailyQuote() {
-            const today = new Date();
-            const index = today.getDate() % dailyQuotes.length;
-            const quote = dailyQuotes[index];
-            document.getElementById("quote-of-the-day").innerHTML = `"${quote.text}" – ${quote.author}`;
-        }
-
-        window.onload = displayDailyQuote;
-
-        (function() {
-            emailjs.init("8b8_-Kd0NqGY82M1-");
-        })();
-
-        document.getElementById("quoteForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            let quote = document.getElementById("quote").value;
-            let author = document.getElementById("author").value;
-
-            let templateParams = {
-                user_email: "anupakdel7105@gmail.com",
-                quote_text: quote,
-                quote_author: author
-            };
-
-            emailjs.send("service_4sbgao6", "template_kcz1nfj", templateParams)
-                .then(function(response) {
-                    alert("Thank you for sharing. Keep inspiring ✅️");
-                    document.getElementById("quoteForm").reset();
-                }, function(error) {
-                    alert("Sorry failed to submit try later ❌️.");
-                });
-        });
-    </script>
-
+    addBackgroundDetails();
+    makeConfetti();
+  </script>
 </body>
 </html>
